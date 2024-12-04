@@ -1,4 +1,4 @@
-# Function to check if a report is safe
+# The function purpose is to check if a report is safe
 is_safe <- function(report) {
   differences <- diff(report)
   all_increasing <- all(differences > 0 & differences <= 3)
@@ -6,7 +6,8 @@ is_safe <- function(report) {
   return(all_increasing || all_decreasing)
 }
 
-# Function to check if a report is safe with the Problem Dampener
+# The function purpose is to check if a report is safe in addition
+# with the Problem Dampener
 is_safe_with_dampener <- function(report) {
   n <- length(report)
   if (is_safe(report)) {
@@ -21,13 +22,11 @@ is_safe_with_dampener <- function(report) {
   return(FALSE)
 }
 
-# Read the input file
 data <- readLines("day2/input.txt")
 
-# Initialize the count of safe reports
 safe_count <- 0
 
-# Process each report
+# Process
 for (line in data) {
   report <- as.numeric(unlist(strsplit(line, " ")))
   if (is_safe_with_dampener(report)) {
@@ -35,5 +34,4 @@ for (line in data) {
   }
 }
 
-# Print the result
 cat(safe_count, "\n")
